@@ -8,8 +8,8 @@ program SurvivalGame
     real, parameter :: initial_planks_storage_limit = 0, initial_firewood_storage_limit = 0, initial_burnable_planks_storage_limit = 0, initial_metal_plate_storage_limit = 0, inital_soilfertillizer_storage_limit = 0
     real, parameter :: building1_cost1 = 10, building1_cost2 = 10, building2_cost1 = 10, building2_cost2 = 10, building2_cost3 = 15, building3_cost1 = 1, building3_cost2 = 10, building3_cost3 = 15, building3_cost4 = 20, building4_cost1 = 10, building4_cost2 = 10, building4_cost3 = 15, building4_cost4 = 5
     real, parameter :: item1_cost1 = 3, item1_cost2 = 5
-    character(len=1) :: plant_pot1 = 'f', plant_pot2 = 'f'
-    character(len=4) ::  plant_pot1_plant = 'None', plant_pot2_plant = 'None'
+    character(len=1) :: I_plant_pot1 = 'f', I_plant_pot2 = 'f'
+    character(len=4) ::  I_plant_pot1_plant = 'None', I_plant_pot2_plant = 'None'
     integer, parameter :: lett_owned = 0, lett_seeds_owned = 0, mato_owned = 0, carr_owned = 0, tato_owned = 0, oats_owned = 0, whet_owned = 0, rice_owned = 0, appl_owned = 0, oran_owned = 0, pine_owned = 0, cumb_owned = 0, corn_owned = 0, soyb_owned = 0, sunf_owned = 0, onio_owned = 0, suga_owned = 0, bean_owned = 0
     wood_in_world = initial_wood_in_world
     metal_in_world = initial_metal_in_world
@@ -46,8 +46,8 @@ program SurvivalGame
     
     do
     print *, 'Resources In World'
-    print *, 'Total Wood:', wood_in_world
-    print *, 'Total Metal:', metal_in_world
+    print *, 'Total Wood:  ', wood_in_world
+    print *, 'Total Metal: ', metal_in_world
     print *, 'Total Leaves:', leaves_in_world
     print *, ' '
     print *, '1. Resource Storage'
@@ -70,14 +70,14 @@ program SurvivalGame
         print *, 'Leaves:', leaves_bag
         print *, ' '
         print *, 'Storage'
-        print *, 'Wood:           ', wood_storage
-        print *, 'Metal:          ', metal_storage
-        print *, 'Leaves:         ', leaves_storage
-        print *, 'Planks:         ', planks_storage
-        print *, 'Firewood:       ', firewood_storage
-        print *, 'Burnable Planks:', burnable_planks_storage
-        print *, 'Metal Plate:    ', metal_plate_storage
-        print *, 'Soilfertillizer:', soilfertillizer_storage
+        print *, 'I Wood:             ', wood_storage
+        print *, 'I Metal:            ', metal_storage
+        print *, 'I Leaves:           ', leaves_storage
+        print *, 'II Soilfertillizer: ', soilfertillizer_storage
+        print *, 'II Planks:          ', planks_storage
+        print *, 'II Firewood:        ', firewood_storage
+        print *, 'III Burnable Planks:', burnable_planks_storage
+        print *, 'III Metal Plate:    ', metal_plate_storage
         print *, ' '
     case(2)
         print *, ' '
@@ -143,7 +143,7 @@ program SurvivalGame
                 end if
         case(2)
             print *, 'How Much Metal You Want To Drop Off'
-            read(*,*) Metal_dropoff
+            read(*,*) metal_dropoff
             if (metal_storage <= metal_storage_limit .AND. metal_bag >= metal_dropoff) then
                 metal_storage = metal_storage + metal_dropoff
                 metal_bag = metal_bag - metal_dropoff
@@ -182,13 +182,13 @@ program SurvivalGame
         read(*,*) potchoice1
         select case(potchoice1)
         case(1)
-            if (plant_pot1 == 't') then
+            if (I_plant_pot1 == 't') then
                 print *, 'Good'
             else
                 print *, 'You Don''t Have A Plant Pot Here'
             end if
         case(2)
-            if (plant_pot2 == 't') then
+            if (I_plant_pot2 == 't') then
                 print *, 'Good'
             else
                 print *, 'You Don''t Have A Plant Pot Here'
@@ -209,21 +209,21 @@ program SurvivalGame
         print *, ' '
         print *, 'Items'
         print *, ' '
-        print *, '1. Plant Pot With Workshop'
+        print *, '1. I Plant Pot'
         print *, ' '
         read(*,*) potchoice2
         select case(potchoice2)
         case(1)
             if (wood_storage >= item1_cost1 .AND. soilfertillizer_storage >= item1_cost2) then
-                if (plant_pot1 == 'f') then
+                if (I_plant_pot1 == 'f') then
                 print *, 'You Built A Plant Pot At 1'
-                plant_pot1 = 't'
+                I_plant_pot1 = 't'
                 wood_storage = wood_storage - item1_cost1
                 soilfertillizer_storage = soilfertillizer_storage - item1_cost2
             else
-                if (plant_pot2 == 'f') then
+                if (I_plant_pot2 == 'f') then
                     print *, 'You Built A Plant Pot At 2'
-                    plant_pot2 = 't'
+                    I_plant_pot2 = 't'
                     wood_storage = wood_storage - item1_cost1
                     soilfertillizer_storage = soilfertillizer_storage - item1_cost2
                 else
@@ -346,4 +346,3 @@ program SurvivalGame
     end do
     print *, 'Exiting the simulation. Thank you for playing!'
     end program SurvivalGame
-
