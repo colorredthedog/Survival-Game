@@ -57,7 +57,7 @@ program SurvivalGame
     print *, '15. Buildings Owned'
     print *, '16. Items'
     print *, '18. Crafting'
-    print *, '19. Buildings'
+    print *, '19. Build Buildings'
     print *, '20. Exit'
     read(*,*) choice1
     
